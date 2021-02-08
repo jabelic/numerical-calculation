@@ -6,18 +6,11 @@
 #define DT  0.01
 #define XLIM 60
 
-double f(double x){ return  x*x-2*x; }
+double f(double x){ return  x*x*x-2*x; }
 double df(double t){ return 3*t*t - 2; }
 double euler(double *t, double *x){ 
     x[0] = 0.1;
     int i = 0;
-    // int oldx = 0;
-
-    // while (x[i] < XLIM && i < N){
-    //     i++;
-    //     x[i] = x[i-1] + df(t[i]) * DT;
-    //     printf("%f, %f\n",x[i], x[i-1]);
-    // }
     printf("%p\n", t);
     
     for (i = 1; i <= N; i++){
@@ -28,7 +21,7 @@ double euler(double *t, double *x){
     return x[i];
 }
 
-int main(int argc, int **argv){
+int main(int argc, char **argv){
     FILE *f;
     FILE *gid;
     char name[32];
