@@ -48,7 +48,7 @@ int main(int argc, char **argv){
     }
 
     // euler method
-    sprintf(name,"data.txt");
+    sprintf(name,"data.dat");
     f=fopen(name,"w");
     int plot_size = 0;
     fprintf(f,"%lf\t%lf\n",t[plot_size],x[plot_size]);
@@ -59,7 +59,7 @@ int main(int argc, char **argv){
     fclose(f);
 
     // 厳密解
-    sprintf(name,"data_t.txt");
+    sprintf(name,"data_t.dat");
     f=fopen(name,"w");
     plot_size = 0;
     fprintf(f,"%lf\t%lf\n",t[plot_size],x_t[plot_size]);
@@ -69,7 +69,7 @@ int main(int argc, char **argv){
     }
     fclose(f);
 
-    sprintf(name,"error.txt");
+    sprintf(name,"error.dat");
     f=fopen(name,"w");
     plot_size = 0;
     fprintf(f,"%lf\t%lf\n",t[plot_size],er[plot_size]);
@@ -91,13 +91,13 @@ int main(int argc, char **argv){
     fprintf(gid,"set xrange [-%f:%f] \n", plot_size*DT/2+2*DT,plot_size*DT/2+2*DT);
     fprintf(gid,"set yrange [-%f:%f] \n", MIN(rangesize_x[0], rangesize_x_t[0])+1,MAX(rangesize_x[1], rangesize_x_t[1])+1);
     fprintf(gid,"set output 'init.png' \n");
-    fprintf(gid,"plot 'data.txt' w l, 'data_t.txt' w l linecolor rgb '#ff0000' \n");
+    fprintf(gid,"plot 'data.dat' w l, 'data_t.dat' w l linecolor rgb '#ff0000' \n");
     // pclose(gid);
 
     fprintf(gid,"set xrange [-%f:%f] \n", plot_size*DT/2+2*DT,plot_size*DT/2+2*DT);
     fprintf(gid,"set yrange [-%f:%f] \n", rangesize_er[0]+(rangesize_er[0]+rangesize_er[1])/10.0,rangesize_er[1]+(rangesize_er[0]+rangesize_er[1])/10.0);
     fprintf(gid,"set output 'error.png' \n");
-    fprintf(gid,"plot 'error.txt' w l \n");
+    fprintf(gid,"plot 'error.dat' w l \n");
     pclose(gid);
     return 0;
 }
