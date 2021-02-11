@@ -79,7 +79,7 @@ int main(int argc, char **argv){
     }
     fclose(f);
 
-
+    // range size for plotting
     double *rangesize_x = range(x);
     double *rangesize_x_t = range(x_t);
     double *rangesize_er = range(er);

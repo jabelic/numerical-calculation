@@ -35,6 +35,8 @@ int main(int argc, char **argv){
     double *x_t = calloc(N, sizeof(double));
     double *er = calloc(N, sizeof(double));
     int index = 0;
+
+    // domain
     for(int i = -N/2; i <= N/2; i++){
         t[index] = DT*i;
         index++;
@@ -80,7 +82,7 @@ int main(int argc, char **argv){
     }
     fclose(f);
 
-
+    // range size for plotting
     double *rangesize_x = range(x);
     double *rangesize_x_t = range(x_t);
     double *rangesize_er = range(er);
@@ -89,7 +91,7 @@ int main(int argc, char **argv){
     fprintf(gid,"set terminal png\n");
     fprintf(gid,"set grid\n");
     fprintf(gid,"set xrange [-%f:%f] \n", plot_size*DT/2+2*DT,plot_size*DT/2+2*DT);
-    fprintf(gid,"set yrange [-%f:%f] \n", MIN(rangesize_x[0], rangesize_x[0])+1,MAX(rangesize_x[1], rangesize_x_t[1])+1);
+    fprintf(gid,"set yrange [-%f:%f] \n", MIN(rangesize_x[0], rangesize_x_t[0])+1,MAX(rangesize_x[1], rangesize_x_t[1])+1);
     fprintf(gid,"set output 'init.png' \n");
     fprintf(gid,"plot 'data.txt' w l, 'data_t.txt' w l linecolor rgb '#ff0000' \n ");
 
