@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#define N 300
+#define N 800
 #define EPS pow(10.0, -2.2)
 #define DT  0.01
 #define XLIM 60
