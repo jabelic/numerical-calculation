@@ -7,14 +7,16 @@
 #define XLIM 60
 
 double f(double x){ return  x*x*x-2*x; }
-double df(double t){ return 3*t*t - 2; }
+// double df(double t){ return 3*t*t - 2; }
+double df(double t, double x){ return x*t; }
+double f_true(double t){ return 4.0*exp(t*t/2.0); };
 double euler(double *t, double *x){ 
     x[0] = 0.1;
     int i = 0;
     printf("%p\n", t);
     
     for (i = 1; i <= N; i++){
-        x[i] = x[i-1] + df(t[i]) * DT;
+        x[i] = x[i-1] + df(t[i], x[i-1]) * DT;
         // printf("%f, %f\n",t[i], x[i]);
         if (x[i] > XLIM || x[i] < -XLIM){ break; }
     }
@@ -48,6 +50,7 @@ int main(int argc, char **argv){
     fclose(f);
     gid=popen("gnuplot -persist","w");
     fprintf(gid,"set terminal png\n");
+    fprintf(gid,"set grid\n");
     fprintf(gid,"set xrange [-%f:%f] \n", plot_size*DT,plot_size*DT); // fix me
     fprintf(gid,"set yrange [-%f:%f] \n", (XLIM+0.1)/25,(XLIM+0.1)/25); // fix me
     fprintf(gid,"set output 'init.png' \n");
