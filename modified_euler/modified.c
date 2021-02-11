@@ -82,6 +82,7 @@ int main(int argc, char **argv){
 
     double *rangesize_x = range(x);
     double *rangesize_x_t = range(x_t);
+    double *rangesize_er = range(er);
     
     gid=popen("gnuplot -persist","w");
     fprintf(gid,"set terminal png\n");
@@ -92,7 +93,7 @@ int main(int argc, char **argv){
     fprintf(gid,"plot 'data.txt' w l, 'data_t.txt' w l linecolor rgb '#ff0000' \n ");
 
     fprintf(gid,"set xrange [-%f:%f] \n", plot_size*DT/2+2*DT,plot_size*DT/2+2*DT);
-    fprintf(gid,"set yrange [-%f:%f] \n", 0.0,20.0);
+    fprintf(gid,"set yrange [-%f:%f] \n", rangesize_er[0]+(rangesize_er[0]+rangesize_er[1])/10.0,rangesize_er[1]+(rangesize_er[0]+rangesize_er[1])/10.0);
     fprintf(gid,"set output 'error.png' \n");
     fprintf(gid,"plot 'error.txt' w l \n");
     pclose(gid);
