@@ -12,7 +12,8 @@
 double df(double t, double x){ return x*t; }
 double f_true(double t){ return 4.0*exp(t*t/2.0); };
 double *range(double *ary);
-// FIXME: これじゃ改良オイラー法. 修正オイラー法に修正.
+
+// Heun method
 double modified(double *t, double *x){
     x[0] = f_true(t[0]);
     printf("Initial: %f\n", f_true(t[0]));
@@ -46,9 +47,8 @@ int main(int argc, char **argv){
     for(int i=0; i<N; i++){
         er[i] = fabs(x[i] - x_t[i]);
     }
-
-    // modified euler method
-    sprintf(name,"data.dat");
+    // Estimation by numerical calculation
+    sprintf(name,"data.txt");
     f=fopen(name,"w");
     int plot_size = 0;
     fprintf(f,"%lf\t%lf\n",t[plot_size],x[plot_size]);
